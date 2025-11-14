@@ -29,10 +29,14 @@ class TransactionService(payment_pb2_grpc.TransactionServiceServicer):
     def __init__(self) -> None:
         self.processor = TransactionProcessor()
 
-    async def ProcessTransaction(self, request: payment_pb2.TransactionRequest, context: grpc.aio.ServicerContext) -> payment_pb2.TransactionResponse:  # noqa: N802
+    async def ProcessTransaction(
+        self, request: payment_pb2.TransactionRequest, context: grpc.aio.ServicerContext
+    ) -> payment_pb2.TransactionResponse:  # noqa: N802
         return await self.processor.process(request)
 
-    async def GetStatus(self, request: payment_pb2.TransactionStatus, context: grpc.aio.ServicerContext) -> payment_pb2.TransactionResponse:  # noqa: N802
+    async def GetStatus(
+        self, request: payment_pb2.TransactionStatus, context: grpc.aio.ServicerContext
+    ) -> payment_pb2.TransactionResponse:  # noqa: N802
         async with async_session_factory() as session:
             entry = await get_ledger_entry_by_transaction_id(session, request.transaction_id)
 

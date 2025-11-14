@@ -3,7 +3,10 @@ import pytest
 try:
     from common.generated import payment_pb2
 except ImportError:
-    pytest.skip("Generated gRPC stubs missing. Run `make proto` before running tests.", allow_module_level=True)
+    pytest.skip(
+        "Generated gRPC stubs missing. Run `make proto` before running tests.",
+        allow_module_level=True,
+    )
 
 from fraud_service.rules.default_rules import load_default_rules
 from fraud_service.rules.engine import RuleEngine

@@ -15,7 +15,9 @@ def init_tracer(service_name: str) -> None:
         from opentelemetry.sdk.trace import TracerProvider
         from opentelemetry.sdk.trace.export import BatchSpanProcessor
     except ImportError:
-        logging.getLogger(__name__).warning("OpenTelemetry packages not installed; tracing disabled.")
+        logging.getLogger(__name__).warning(
+            "OpenTelemetry packages not installed; tracing disabled."
+        )
         return
 
     resource = Resource(attributes={SERVICE_NAME: service_name})

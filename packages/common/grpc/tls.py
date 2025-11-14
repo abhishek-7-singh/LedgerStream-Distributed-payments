@@ -16,4 +16,6 @@ def build_ssl_channel_credentials(
     private_key = Path(private_key_path).read_bytes() if private_key_path else None
     cert_chain = Path(cert_chain_path).read_bytes() if cert_chain_path else None
 
-    return grpc.ssl_channel_credentials(root_certificates=root_cert, private_key=private_key, certificate_chain=cert_chain)
+    return grpc.ssl_channel_credentials(
+        root_certificates=root_cert, private_key=private_key, certificate_chain=cert_chain
+    )

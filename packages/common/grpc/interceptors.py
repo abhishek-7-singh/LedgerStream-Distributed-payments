@@ -12,7 +12,9 @@ ClientInterceptorCallable = Callable[[grpc.ClientCallDetails, Any], Any]
 class RetryInterceptor(grpc.aio.UnaryUnaryClientInterceptor):
     """Unary gRPC client interceptor adding retry with exponential backoff."""
 
-    def __init__(self, max_attempts: int, backoff_base: float = 0.2, backoff_multiplier: float = 2.0) -> None:
+    def __init__(
+        self, max_attempts: int, backoff_base: float = 0.2, backoff_multiplier: float = 2.0
+    ) -> None:
         self._max_attempts = max(max_attempts, 1)
         self._backoff_base = backoff_base
         self._backoff_multiplier = backoff_multiplier
@@ -46,7 +48,9 @@ def _retryable(status_code: grpc.StatusCode) -> bool:
     }
 
 
-def metadata_request_id(metadata: Optional[Tuple[Tuple[str, str], ...]] = None) -> Tuple[Tuple[str, str], ...]:
+def metadata_request_id(
+    metadata: Optional[Tuple[Tuple[str, str], ...]] = None
+) -> Tuple[Tuple[str, str], ...]:
     request_id = str(uuid.uuid4())
     base_metadata = tuple(metadata or ())
     return base_metadata + (("x-request-id", request_id),)

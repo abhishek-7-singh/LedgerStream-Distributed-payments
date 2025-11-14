@@ -7,6 +7,7 @@ from common.db import async_session_factory
 
 from ..db.repositories import get_due_outbox, mark_outbox_attempt, update_ledger_status
 from ..service.fraud_client import FraudClient
+
 _scheduler: Optional[AsyncIOScheduler] = None
 
 
@@ -51,7 +52,9 @@ def start_scheduler() -> None:
     if _scheduler is not None:
         return
     _scheduler = AsyncIOScheduler()
-    _scheduler.add_job(_drain_outbox, "interval", seconds=15, id="drain_outbox", replace_existing=True)
+    _scheduler.add_job(
+        _drain_outbox, "interval", seconds=15, id="drain_outbox", replace_existing=True
+    )
     _scheduler.start()
 
 

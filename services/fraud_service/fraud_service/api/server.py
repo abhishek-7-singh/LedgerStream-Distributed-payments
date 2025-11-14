@@ -32,7 +32,9 @@ class FraudServicer(payment_pb2_grpc.FraudServiceServicer):
     def __init__(self) -> None:
         self.evaluator = FraudEvaluator()
 
-    async def Evaluate(self, request: payment_pb2.FraudCheckRequest, context: grpc.aio.ServicerContext) -> payment_pb2.FraudCheckResponse:  # noqa: N802
+    async def Evaluate(
+        self, request: payment_pb2.FraudCheckRequest, context: grpc.aio.ServicerContext
+    ) -> payment_pb2.FraudCheckResponse:  # noqa: N802
         return self.evaluator.evaluate(request)
 
 

@@ -33,7 +33,9 @@ def setup_logging(level: str = "INFO") -> None:
             logger_opt = logger.opt(depth=6, exception=record.exc_info)
             logger_opt.log(record.levelno, record.getMessage())
 
-    logging.basicConfig(handlers=[InterceptHandler()], level=_LEVEL_MAP.get(level.upper(), logging.INFO))
+    logging.basicConfig(
+        handlers=[InterceptHandler()], level=_LEVEL_MAP.get(level.upper(), logging.INFO)
+    )
 
 
 def _inject_request_id(record: Any) -> bool:

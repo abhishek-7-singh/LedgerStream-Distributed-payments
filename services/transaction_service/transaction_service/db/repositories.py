@@ -26,7 +26,9 @@ async def update_ledger_status(
     )
 
 
-async def get_ledger_entry_by_transaction_id(session: AsyncSession, transaction_id: str) -> Optional[LedgerEntry]:
+async def get_ledger_entry_by_transaction_id(
+    session: AsyncSession, transaction_id: str
+) -> Optional[LedgerEntry]:
     stmt = (
         select(LedgerEntry)
         .where(LedgerEntry.transaction_id == transaction_id)
@@ -50,7 +52,9 @@ async def list_ledger_entries(
     return result.all()
 
 
-async def insert_outbox(session: AsyncSession, transaction_id: str, payload: dict, max_attempts: int) -> RetryOutbox:
+async def insert_outbox(
+    session: AsyncSession, transaction_id: str, payload: dict, max_attempts: int
+) -> RetryOutbox:
     record = RetryOutbox(transaction_id=transaction_id, payload=payload, max_attempts=max_attempts)
     session.add(record)
     await session.flush()
@@ -58,7 +62,15 @@ async def insert_outbox(session: AsyncSession, transaction_id: str, payload: dic
 
 
 async def get_due_outbox(session: AsyncSession, limit: int = 20) -> Sequence[RetryOutbox]:
-    stmt = select(RetryOutbox).where(RetryOutbox.next_attempt_at <= datetime.utcnow(), RetryOutbox.attempts < RetryOutbox.max_attempts).order_by(RetryOutbox.next_attempt_at).limit(limit)
+    stmt = (
+        select(RetryOutbox)
+        .where(
+            RetryOutbox.next_attempt_at <= datetime.utcnow(),
+            RetryOutbox.attempts < RetryOutbox.max_attempts,
+        )
+        .order_by(RetryOutbox.next_attempt_at)
+        .limit(limit)
+    )
     result = await session.scalars(stmt)
     return result.all()
 
@@ -69,7 +81,7 @@ async def mark_outbox_attempt(session: AsyncSession, record: RetryOutbox, succes
         await session.delete(record)
         return
 
-    backoff_seconds = min(60, 2 ** record.attempts)
+    backoff_seconds = min(60, 2**record.attempts)
     record.next_attempt_at = datetime.utcnow() + timedelta(seconds=backoff_seconds)
     if record.attempts >= record.max_attempts:
         await session.delete(record)

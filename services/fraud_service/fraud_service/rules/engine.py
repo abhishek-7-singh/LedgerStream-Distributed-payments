@@ -20,7 +20,9 @@ class RuleResult:
 
 
 class Rule:
-    def __init__(self, name: str, func: Callable[[payment_pb2.FraudCheckRequest], RuleResult]) -> None:
+    def __init__(
+        self, name: str, func: Callable[[payment_pb2.FraudCheckRequest], RuleResult]
+    ) -> None:
         self.name = name
         self.func = func
 
@@ -44,4 +46,6 @@ class RuleEngine:
 
         flagged = score >= 0.7
         reason = "; ".join(reasons) if reasons else None
-        return RuleResult(name="aggregate", score=min(score, 1.0), reason=reason if flagged else None)
+        return RuleResult(
+            name="aggregate", score=min(score, 1.0), reason=reason if flagged else None
+        )

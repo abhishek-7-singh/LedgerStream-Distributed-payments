@@ -28,10 +28,20 @@ def upgrade() -> None:
         sa.Column("amount_minor", sa.BigInteger(), nullable=False),
         sa.Column("currency", sa.String(length=3), nullable=False),
         sa.Column("payment_method", sa.String(length=32), nullable=False),
-        sa.Column("status", sa.Enum("pending", "confirmed", "declined", "retry", name="ledgerstatus"), nullable=False),
+        sa.Column(
+            "status",
+            sa.Enum("pending", "confirmed", "declined", "retry", name="ledgerstatus"),
+            nullable=False,
+        ),
         sa.Column("reason", sa.String(length=255), nullable=True),
-    sa.Column("created_at", sa.DateTime(), nullable=False, server_default=sa.func.now()),
-    sa.Column("updated_at", sa.DateTime(), nullable=False, server_default=sa.func.now(), server_onupdate=sa.func.now()),
+        sa.Column("created_at", sa.DateTime(), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            nullable=False,
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+        ),
     )
     op.create_index("idx_ledger_transaction_status", "ledger_entries", ["transaction_id", "status"])
 
@@ -44,7 +54,13 @@ def upgrade() -> None:
         sa.Column("max_attempts", sa.Integer(), nullable=False, server_default="5"),
         sa.Column("next_attempt_at", sa.DateTime(), nullable=False, server_default=sa.func.now()),
         sa.Column("created_at", sa.DateTime(), nullable=False, server_default=sa.func.now()),
-    sa.Column("updated_at", sa.DateTime(), nullable=False, server_default=sa.func.now(), server_onupdate=sa.func.now()),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            nullable=False,
+            server_default=sa.func.now(),
+            server_onupdate=sa.func.now(),
+        ),
     )
     op.create_index("idx_retry_transaction", "retry_outbox", ["transaction_id"])
 

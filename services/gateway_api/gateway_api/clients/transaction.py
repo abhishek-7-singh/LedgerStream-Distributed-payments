@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
 
 
 class TransactionClient:
-    def __init__(self, channel: grpc.aio.Channel, stub: payment_pb2_grpc.TransactionServiceStub) -> None:
+    def __init__(
+        self, channel: grpc.aio.Channel, stub: payment_pb2_grpc.TransactionServiceStub
+    ) -> None:
         self._channel = channel
         self._stub = stub
 
@@ -47,10 +49,14 @@ class TransactionClient:
             if intercept_fn is not None:
                 channel = intercept_fn(channel, *interceptors)
             else:
-                logger.warning("grpc.aio.intercept_channel unavailable; continuing without interceptors")
+                logger.warning(
+                    "grpc.aio.intercept_channel unavailable; continuing without interceptors"
+                )
         return cls(channel=channel, stub=payment_pb2_grpc.TransactionServiceStub(channel))
 
-    async def process(self, request: payment_pb2.TransactionRequest) -> payment_pb2.TransactionResponse:
+    async def process(
+        self, request: payment_pb2.TransactionRequest
+    ) -> payment_pb2.TransactionResponse:
         metadata = metadata_request_id()
         return await self._stub.ProcessTransaction(request, metadata=metadata)
 

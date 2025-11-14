@@ -13,9 +13,12 @@ try:
 except ImportError as exc:  # pragma: no cover - run make proto first
     raise RuntimeError("Generated gRPC modules missing. Run `make proto`.") from exc
 
+
 @dataclass
 class TransactionProcessor:
-    async def process(self, request: payment_pb2.TransactionRequest) -> payment_pb2.TransactionResponse:
+    async def process(
+        self, request: payment_pb2.TransactionRequest
+    ) -> payment_pb2.TransactionResponse:
         async with async_session_factory() as session:
             async with session.begin():
                 entry = LedgerEntry(
@@ -62,7 +65,9 @@ class TransactionProcessor:
                         await fraud_client.close()
 
                 if fraud_result.flagged:
-                    await update_ledger_status(session, request.transaction_id, "declined", fraud_result.reason)
+                    await update_ledger_status(
+                        session, request.transaction_id, "declined", fraud_result.reason
+                    )
                     status = payment_pb2.TransactionStatus(
                         transaction_id=request.transaction_id,
                         status="declined",

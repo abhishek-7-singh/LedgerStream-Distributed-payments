@@ -5,11 +5,20 @@ from typing import TYPE_CHECKING, Optional
 from fastapi import APIRouter, HTTPException, Query, status
 
 from ..clients.transaction import TransactionClient
-from ..schemas.payment import Money, PaymentCollection, PaymentRecord, PaymentRequest, PaymentResponse
+from ..schemas.payment import (
+    Money,
+    PaymentCollection,
+    PaymentRecord,
+    PaymentRequest,
+    PaymentResponse,
+)
 
 from common.db import async_session_factory
 from transaction_service.db.models import LedgerEntry
-from transaction_service.db.repositories import get_ledger_entry_by_transaction_id, list_ledger_entries
+from transaction_service.db.repositories import (
+    get_ledger_entry_by_transaction_id,
+    list_ledger_entries,
+)
 
 if TYPE_CHECKING:
     from common.generated import payment_pb2
@@ -44,7 +53,9 @@ async def create_payment(payload: PaymentRequest) -> PaymentResponse:
             transaction_id=payload.transaction_id,
             merchant_id=payload.merchant_id,
             customer_id=payload.customer_id,
-            amount=payment_pb2.Money(currency=payload.amount.currency, value_minor=payload.amount.value_minor),
+            amount=payment_pb2.Money(
+                currency=payload.amount.currency, value_minor=payload.amount.value_minor
+            ),
             payment_method=payload.payment_method,
             reference=payload.reference or "",
         )

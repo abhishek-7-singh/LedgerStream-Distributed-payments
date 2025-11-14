@@ -7,23 +7,24 @@ import grpc
 
 import payment_pb2 as payment__pb2
 
-GRPC_GENERATED_VERSION = '1.71.2'
+GRPC_GENERATED_VERSION = "1.71.2"
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
 try:
     from grpc._utilities import first_version_is_lower
+
     _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)
 except ImportError:
     _version_not_supported = True
 
 if _version_not_supported:
     raise RuntimeError(
-        f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in payment_pb2_grpc.py depends on'
-        + f' grpcio>={GRPC_GENERATED_VERSION}.'
-        + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
-        + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
+        f"The grpc package installed is at version {GRPC_VERSION},"
+        + f" but the generated code in payment_pb2_grpc.py depends on"
+        + f" grpcio>={GRPC_GENERATED_VERSION}."
+        + f" Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}"
+        + f" or downgrade your generated code using grpcio-tools<={GRPC_VERSION}."
     )
 
 
@@ -37,15 +38,17 @@ class TransactionServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ProcessTransaction = channel.unary_unary(
-                '/payment.TransactionService/ProcessTransaction',
-                request_serializer=payment__pb2.TransactionRequest.SerializeToString,
-                response_deserializer=payment__pb2.TransactionResponse.FromString,
-                _registered_method=True)
+            "/payment.TransactionService/ProcessTransaction",
+            request_serializer=payment__pb2.TransactionRequest.SerializeToString,
+            response_deserializer=payment__pb2.TransactionResponse.FromString,
+            _registered_method=True,
+        )
         self.GetStatus = channel.unary_unary(
-                '/payment.TransactionService/GetStatus',
-                request_serializer=payment__pb2.TransactionStatus.SerializeToString,
-                response_deserializer=payment__pb2.TransactionResponse.FromString,
-                _registered_method=True)
+            "/payment.TransactionService/GetStatus",
+            request_serializer=payment__pb2.TransactionStatus.SerializeToString,
+            response_deserializer=payment__pb2.TransactionResponse.FromString,
+            _registered_method=True,
+        )
 
 
 class TransactionServiceServicer(object):
@@ -54,54 +57,57 @@ class TransactionServiceServicer(object):
     def ProcessTransaction(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def GetStatus(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_TransactionServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ProcessTransaction': grpc.unary_unary_rpc_method_handler(
-                    servicer.ProcessTransaction,
-                    request_deserializer=payment__pb2.TransactionRequest.FromString,
-                    response_serializer=payment__pb2.TransactionResponse.SerializeToString,
-            ),
-            'GetStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetStatus,
-                    request_deserializer=payment__pb2.TransactionStatus.FromString,
-                    response_serializer=payment__pb2.TransactionResponse.SerializeToString,
-            ),
+        "ProcessTransaction": grpc.unary_unary_rpc_method_handler(
+            servicer.ProcessTransaction,
+            request_deserializer=payment__pb2.TransactionRequest.FromString,
+            response_serializer=payment__pb2.TransactionResponse.SerializeToString,
+        ),
+        "GetStatus": grpc.unary_unary_rpc_method_handler(
+            servicer.GetStatus,
+            request_deserializer=payment__pb2.TransactionStatus.FromString,
+            response_serializer=payment__pb2.TransactionResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'payment.TransactionService', rpc_method_handlers)
+        "payment.TransactionService", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('payment.TransactionService', rpc_method_handlers)
+    server.add_registered_method_handlers("payment.TransactionService", rpc_method_handlers)
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class TransactionService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def ProcessTransaction(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+    def ProcessTransaction(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/payment.TransactionService/ProcessTransaction',
+            "/payment.TransactionService/ProcessTransaction",
             payment__pb2.TransactionRequest.SerializeToString,
             payment__pb2.TransactionResponse.FromString,
             options,
@@ -112,23 +118,26 @@ class TransactionService(object):
             wait_for_ready,
             timeout,
             metadata,
-            _registered_method=True)
+            _registered_method=True,
+        )
 
     @staticmethod
-    def GetStatus(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+    def GetStatus(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/payment.TransactionService/GetStatus',
+            "/payment.TransactionService/GetStatus",
             payment__pb2.TransactionStatus.SerializeToString,
             payment__pb2.TransactionResponse.FromString,
             options,
@@ -139,7 +148,8 @@ class TransactionService(object):
             wait_for_ready,
             timeout,
             metadata,
-            _registered_method=True)
+            _registered_method=True,
+        )
 
 
 class FraudServiceStub(object):
@@ -152,10 +162,11 @@ class FraudServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Evaluate = channel.unary_unary(
-                '/payment.FraudService/Evaluate',
-                request_serializer=payment__pb2.FraudCheckRequest.SerializeToString,
-                response_deserializer=payment__pb2.FraudCheckResponse.FromString,
-                _registered_method=True)
+            "/payment.FraudService/Evaluate",
+            request_serializer=payment__pb2.FraudCheckRequest.SerializeToString,
+            response_deserializer=payment__pb2.FraudCheckResponse.FromString,
+            _registered_method=True,
+        )
 
 
 class FraudServiceServicer(object):
@@ -164,43 +175,46 @@ class FraudServiceServicer(object):
     def Evaluate(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_FraudServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Evaluate': grpc.unary_unary_rpc_method_handler(
-                    servicer.Evaluate,
-                    request_deserializer=payment__pb2.FraudCheckRequest.FromString,
-                    response_serializer=payment__pb2.FraudCheckResponse.SerializeToString,
-            ),
+        "Evaluate": grpc.unary_unary_rpc_method_handler(
+            servicer.Evaluate,
+            request_deserializer=payment__pb2.FraudCheckRequest.FromString,
+            response_serializer=payment__pb2.FraudCheckResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'payment.FraudService', rpc_method_handlers)
+        "payment.FraudService", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('payment.FraudService', rpc_method_handlers)
+    server.add_registered_method_handlers("payment.FraudService", rpc_method_handlers)
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class FraudService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def Evaluate(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
+    def Evaluate(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/payment.FraudService/Evaluate',
+            "/payment.FraudService/Evaluate",
             payment__pb2.FraudCheckRequest.SerializeToString,
             payment__pb2.FraudCheckResponse.FromString,
             options,
@@ -211,4 +225,5 @@ class FraudService(object):
             wait_for_ready,
             timeout,
             metadata,
-            _registered_method=True)
+            _registered_method=True,
+        )

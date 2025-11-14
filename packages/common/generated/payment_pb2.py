@@ -12,42 +12,38 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'payment.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "payment.proto"
 )
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rpayment.proto\x12\x07payment\".\n\x05Money\x12\x10\n\x08\x63urrency\x18\x01 \x01(\t\x12\x13\n\x0bvalue_minor\x18\x02 \x01(\x03\"\xa1\x01\n\x12TransactionRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x13\n\x0bmerchant_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x1e\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x0e.payment.Money\x12\x16\n\x0epayment_method\x18\x05 \x01(\t\x12\x11\n\treference\x18\x06 \x01(\t\"K\n\x11TransactionStatus\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x0e\n\x06reason\x18\x03 \x01(\t\"A\n\x13TransactionResponse\x12*\n\x06status\x18\x01 \x01(\x0b\x32\x1a.payment.TransactionStatus\"\x8d\x01\n\x11\x46raudCheckRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x13\n\x0bmerchant_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x1e\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x0e.payment.Money\x12\x16\n\x0epayment_method\x18\x05 \x01(\t\"\\\n\x12\x46raudCheckResponse\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0f\n\x07\x66lagged\x18\x02 \x01(\x08\x12\r\n\x05score\x18\x03 \x01(\x01\x12\x0e\n\x06reason\x18\x04 \x01(\t2\xac\x01\n\x12TransactionService\x12O\n\x12ProcessTransaction\x12\x1b.payment.TransactionRequest\x1a\x1c.payment.TransactionResponse\x12\x45\n\tGetStatus\x12\x1a.payment.TransactionStatus\x1a\x1c.payment.TransactionResponse2S\n\x0c\x46raudService\x12\x43\n\x08\x45valuate\x12\x1a.payment.FraudCheckRequest\x1a\x1b.payment.FraudCheckResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\rpayment.proto\x12\x07payment".\n\x05Money\x12\x10\n\x08\x63urrency\x18\x01 \x01(\t\x12\x13\n\x0bvalue_minor\x18\x02 \x01(\x03"\xa1\x01\n\x12TransactionRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x13\n\x0bmerchant_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x1e\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x0e.payment.Money\x12\x16\n\x0epayment_method\x18\x05 \x01(\t\x12\x11\n\treference\x18\x06 \x01(\t"K\n\x11TransactionStatus\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x0e\n\x06reason\x18\x03 \x01(\t"A\n\x13TransactionResponse\x12*\n\x06status\x18\x01 \x01(\x0b\x32\x1a.payment.TransactionStatus"\x8d\x01\n\x11\x46raudCheckRequest\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x13\n\x0bmerchant_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x1e\n\x06\x61mount\x18\x04 \x01(\x0b\x32\x0e.payment.Money\x12\x16\n\x0epayment_method\x18\x05 \x01(\t"\\\n\x12\x46raudCheckResponse\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x0f\n\x07\x66lagged\x18\x02 \x01(\x08\x12\r\n\x05score\x18\x03 \x01(\x01\x12\x0e\n\x06reason\x18\x04 \x01(\t2\xac\x01\n\x12TransactionService\x12O\n\x12ProcessTransaction\x12\x1b.payment.TransactionRequest\x1a\x1c.payment.TransactionResponse\x12\x45\n\tGetStatus\x12\x1a.payment.TransactionStatus\x1a\x1c.payment.TransactionResponse2S\n\x0c\x46raudService\x12\x43\n\x08\x45valuate\x12\x1a.payment.FraudCheckRequest\x1a\x1b.payment.FraudCheckResponseb\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'payment_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "payment_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  DESCRIPTOR._loaded_options = None
-  _globals['_MONEY']._serialized_start=26
-  _globals['_MONEY']._serialized_end=72
-  _globals['_TRANSACTIONREQUEST']._serialized_start=75
-  _globals['_TRANSACTIONREQUEST']._serialized_end=236
-  _globals['_TRANSACTIONSTATUS']._serialized_start=238
-  _globals['_TRANSACTIONSTATUS']._serialized_end=313
-  _globals['_TRANSACTIONRESPONSE']._serialized_start=315
-  _globals['_TRANSACTIONRESPONSE']._serialized_end=380
-  _globals['_FRAUDCHECKREQUEST']._serialized_start=383
-  _globals['_FRAUDCHECKREQUEST']._serialized_end=524
-  _globals['_FRAUDCHECKRESPONSE']._serialized_start=526
-  _globals['_FRAUDCHECKRESPONSE']._serialized_end=618
-  _globals['_TRANSACTIONSERVICE']._serialized_start=621
-  _globals['_TRANSACTIONSERVICE']._serialized_end=793
-  _globals['_FRAUDSERVICE']._serialized_start=795
-  _globals['_FRAUDSERVICE']._serialized_end=878
+    DESCRIPTOR._loaded_options = None
+    _globals["_MONEY"]._serialized_start = 26
+    _globals["_MONEY"]._serialized_end = 72
+    _globals["_TRANSACTIONREQUEST"]._serialized_start = 75
+    _globals["_TRANSACTIONREQUEST"]._serialized_end = 236
+    _globals["_TRANSACTIONSTATUS"]._serialized_start = 238
+    _globals["_TRANSACTIONSTATUS"]._serialized_end = 313
+    _globals["_TRANSACTIONRESPONSE"]._serialized_start = 315
+    _globals["_TRANSACTIONRESPONSE"]._serialized_end = 380
+    _globals["_FRAUDCHECKREQUEST"]._serialized_start = 383
+    _globals["_FRAUDCHECKREQUEST"]._serialized_end = 524
+    _globals["_FRAUDCHECKRESPONSE"]._serialized_start = 526
+    _globals["_FRAUDCHECKRESPONSE"]._serialized_end = 618
+    _globals["_TRANSACTIONSERVICE"]._serialized_start = 621
+    _globals["_TRANSACTIONSERVICE"]._serialized_end = 793
+    _globals["_FRAUDSERVICE"]._serialized_start = 795
+    _globals["_FRAUDSERVICE"]._serialized_end = 878
 # @@protoc_insertion_point(module_scope)

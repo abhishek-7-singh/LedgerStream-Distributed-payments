@@ -49,7 +49,9 @@ class FraudClient:
             if intercept_fn is not None:
                 channel = intercept_fn(channel, *interceptors)
             else:
-                logger.warning("grpc.aio.intercept_channel unavailable; continuing without interceptors")
+                logger.warning(
+                    "grpc.aio.intercept_channel unavailable; continuing without interceptors"
+                )
 
         stub = payment_pb2_grpc.FraudServiceStub(channel)
         return cls(channel=channel, stub=stub)
@@ -71,7 +73,9 @@ class FraudClient:
             payment_method=payment_method,
         )
         metadata = metadata_request_id()
-        return await self._stub.Evaluate(request, timeout=load_settings().fraud_service_timeout_seconds, metadata=metadata)
+        return await self._stub.Evaluate(
+            request, timeout=load_settings().fraud_service_timeout_seconds, metadata=metadata
+        )
 
     async def close(self) -> None:
         await self._channel.close()
