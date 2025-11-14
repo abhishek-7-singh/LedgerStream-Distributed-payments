@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package payment;
+
+message Money {
+  string currency = 1;
+  int64 value_minor = 2;
+}
+
+message TransactionRequest {
+  string transaction_id = 1;
+  string merchant_id = 2;
+  string customer_id = 3;
+  Money amount = 4;
+  string payment_method = 5;
+  string reference = 6;
+}
+
+message TransactionStatus {
+  string transaction_id = 1;
+  string status = 2;
+  string reason = 3;
+}
+
+message TransactionResponse {
+  TransactionStatus status = 1;
+}
+
+message FraudCheckRequest {
+  string transaction_id = 1;
+  string merchant_id = 2;
+  string customer_id = 3;
+  Money amount = 4;
+  string payment_method = 5;
+}
+
+message FraudCheckResponse {
+  string transaction_id = 1;
+  bool flagged = 2;
+  double score = 3;
+  string reason = 4;
+}
+
+service TransactionService {
+  rpc ProcessTransaction (TransactionRequest) returns (TransactionResponse);
+  rpc GetStatus (TransactionStatus) returns (TransactionResponse);
+}
+
+service FraudService {
+  rpc Evaluate (FraudCheckRequest) returns (FraudCheckResponse);
+}

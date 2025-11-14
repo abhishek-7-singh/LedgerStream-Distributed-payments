@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Poetry
+        run: |
+          pip install poetry
+          poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install
+      - name: Generate protobuf stubs
+        run: poetry run python -m grpc_tools.protoc -I proto --python_out=packages/common/generated --grpc_python_out=packages/common/generated proto/payment.proto
+      - name: Lint
+        run: |
+          poetry run ruff check .
+          poetry run black --check .
+      - name: Tests
+        run: poetry run pytest

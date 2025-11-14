@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: gateway
+      POSTGRES_PASSWORD: gateway
+      POSTGRES_DB: payment_gateway
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gateway -d payment_gateway"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  transaction-service:
+    build:
+      context: .
+      dockerfile: docker/transaction.Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      APP_NAME: transaction-service
+      DATABASE__URL: postgresql+asyncpg://gateway:gateway@postgres:5432/payment_gateway
+      GRPC__PORT: 50052
+      METRICS__PORT: 9464
+      FRAUD_SERVICE_HOST: fraud-service
+      FRAUD_SERVICE_PORT: 50053
+    ports:
+      - "50052:50052"
+      - "9464:9464"
+
+  fraud-service:
+    build:
+      context: .
+      dockerfile: docker/fraud.Dockerfile
+    environment:
+      APP_NAME: fraud-service
+      GRPC__PORT: 50053
+      METRICS__PORT: 9465
+      DATABASE__URL: postgresql+asyncpg://gateway:gateway@postgres:5432/payment_gateway
+    ports:
+      - "50053:50053"
+      - "9465:9465"
+
+  gateway-api:
+    build:
+      context: .
+      dockerfile: docker/gateway.Dockerfile
+    depends_on:
+      - transaction-service
+    environment:
+      APP_NAME: gateway-api
+      GRPC__PORT: 50052
+      DATABASE__URL: postgresql+asyncpg://gateway:gateway@postgres:5432/payment_gateway
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
