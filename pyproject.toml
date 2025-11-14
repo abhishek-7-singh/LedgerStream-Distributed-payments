@@ -57,7 +57,10 @@ target-version = ["py39"]
 profile = "black"
 
 [tool.ruff]
-exclude = ["packages/common/generated"]
+exclude = [
+  "packages/common/generated",
+  "payment",
+]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
