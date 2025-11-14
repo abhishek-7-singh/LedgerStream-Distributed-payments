@@ -52,6 +52,7 @@ gateway-api = "gateway_api.app:run"
 [tool.black]
 line-length = 100
 target-version = ["py39"]
+extend-exclude = "packages/common/generated/"
 
 [tool.isort]
 profile = "black"
