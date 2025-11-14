@@ -56,6 +56,9 @@ target-version = ["py39"]
 [tool.isort]
 profile = "black"
 
+[tool.ruff]
+exclude = ["packages/common/generated"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
