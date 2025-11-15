@@ -159,8 +159,10 @@ Each component is containerized and orchestrated through `docker-compose.yml`. P
 ## Images
 <img width="1919" height="1033" alt="image" src="https://github.com/user-attachments/assets/29d348f2-031c-4917-ba6a-182a6d3b15cc" />
 The docker engine
+
 <img width="1905" height="1079" alt="image" src="https://github.com/user-attachments/assets/f458bfcb-d5fe-43d4-aec6-40265d7e9cdc" />
-Payment frontend
+Payment frontend 
+
 <img width="548" height="925" alt="image" src="https://github.com/user-attachments/assets/68cd38ec-7e0d-496f-bfb6-2cc9c305d148" />
 <img width="549" height="932" alt="image" src="https://github.com/user-attachments/assets/c5db49d8-1eb5-4f6b-8b48-9e443df15ce9" />
 
