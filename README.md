@@ -4,7 +4,7 @@ LedgerStream is a reference implementation of a distributed payment processing p
 
 ---
 ## To Run
-### Backend- Docker compose -d --build
+### Backend- Docker compose up -d --build
 ### Frontend- cd frontend, npm run dev
 ---
 
