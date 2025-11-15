@@ -1,5 +1,5 @@
 # LedgerStream Distributed Payment Gateway
-
+## Author: Abhishek Singh | Vellore Institute of Technology Chennai
 LedgerStream is a reference implementation of a distributed payment processing platform built with Python microservices, gRPC, PostgreSQL, and a Next.js frontend. It demonstrates how to orchestrate resilient payment flows, fraud analysis, and ledger accounting across independently deployable services.
 
 ---
@@ -156,8 +156,20 @@ Each component is containerized and orchestrated through `docker-compose.yml`. P
 ```
 
 ---
+## Images
+<img width="1919" height="1033" alt="image" src="https://github.com/user-attachments/assets/29d348f2-031c-4917-ba6a-182a6d3b15cc" />
+The docker engine
+<img width="1905" height="1079" alt="image" src="https://github.com/user-attachments/assets/f458bfcb-d5fe-43d4-aec6-40265d7e9cdc" />
+Payment frontend
+<img width="548" height="925" alt="image" src="https://github.com/user-attachments/assets/68cd38ec-7e0d-496f-bfb6-2cc9c305d148" />
+<img width="549" height="932" alt="image" src="https://github.com/user-attachments/assets/c5db49d8-1eb5-4f6b-8b48-9e443df15ce9" />
 
-## 📦 Prerequisites
+Flutter App
+
+
+
+
+##  Prerequisites
 
 - **Docker Desktop** or **Docker Engine 24+**
 - **Docker Compose v2**
@@ -167,7 +179,7 @@ Each component is containerized and orchestrated through `docker-compose.yml`. P
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # 1. Copy environment template and adjust overrides
@@ -201,7 +213,7 @@ The compose file exposes services on the following defaults:
 
 ---
 
-## 🚢 Deployment Options
+##  Deployment Options
 
 Looking to deploy the backend and web frontend independently? See `docs/deployment-overview.md` for a full walkthrough covering:
 
@@ -214,7 +226,7 @@ Those instructions are designed so you can ship the FastAPI/gRPC services and th
 
 ---
 
-## 🎨 Frontend Workflow
+##  Frontend Workflow
 
 ### Development
 
@@ -326,7 +338,7 @@ docker compose exec transaction-service poetry run alembic downgrade <revision_i
 
 ---
 
-## 🧪 Testing & Quality Gates
+##  Testing & Quality Gates
 
 ### Run All Tests
 
@@ -380,7 +392,7 @@ CI/CD pipelines can leverage Make targets:
 
 ---
 
-## 📊 Observability
+##  Observability
 
 ### Logging
 
@@ -420,7 +432,7 @@ grafana:
 
 ---
 
-## 🔍 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -483,7 +495,7 @@ docker compose exec transaction-service poetry run alembic upgrade head
 
 ---
 
-## 🚀 Extending the Platform
+##  Extending the Platform
 
 ### Add New Fraud Rules
 
@@ -560,13 +572,13 @@ jobs:
 
 ---
 
-## 📄 License
+##  License
 
 This project is provided for educational and demonstration purposes. Feel free to use, modify, and distribute under your preferred license.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -578,10 +590,10 @@ Contributions are welcome! Please follow these guidelines:
 
 ---
 
-## 📧 Contact
+##  Contact
 
 For questions or support, please open an issue on GitHub.
 
 ---
 
-**Built with ❤️ using Python, FastAPI, gRPC, PostgreSQL, and Next.js**
+**Built with ❤️ using Python, FastAPI, gRPC, PostgreSQL, and Next.js and Flutter**
