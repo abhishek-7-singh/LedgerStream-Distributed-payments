@@ -4,7 +4,7 @@ LedgerStream is a reference implementation of a distributed payment processing p
 
 ---
 ## To Run
-### Backend- Docker compose up -d --build
+### Backend- Docker compose -d --build
 ### Frontend- cd frontend, npm run dev
 ---
 
@@ -162,9 +162,13 @@ The docker engine
 
 <img width="1905" height="1079" alt="image" src="https://github.com/user-attachments/assets/f458bfcb-d5fe-43d4-aec6-40265d7e9cdc" />
 Payment frontend 
+<img width="618" height="821" alt="image" src="https://github.com/user-attachments/assets/1134f501-299b-4260-a1ca-8619d3491ab3" />
+<img width="599" height="833" alt="image" src="https://github.com/user-attachments/assets/69ededb9-cd82-4457-9a94-27605817d0a2" />
+<img width="590" height="827" alt="image" src="https://github.com/user-attachments/assets/ecc6cb95-f96b-461d-8e55-fbda036b34fa" />
+<img width="599" height="835" alt="image" src="https://github.com/user-attachments/assets/2be0dd2b-4dda-4e36-9eb6-4f582b13b629" />
+<img width="590" height="858" alt="image" src="https://github.com/user-attachments/assets/e2ffca29-23a2-4623-a029-c88cbd2b2b5f" />
+<img width="592" height="828" alt="image" src="https://github.com/user-attachments/assets/b2a4a46a-20f2-4678-847e-fca5ef79228a" />
 
-<img width="548" height="925" alt="image" src="https://github.com/user-attachments/assets/68cd38ec-7e0d-496f-bfb6-2cc9c305d148" />
-<img width="549" height="932" alt="image" src="https://github.com/user-attachments/assets/c5db49d8-1eb5-4f6b-8b48-9e443df15ce9" />
 
 Flutter App
 
